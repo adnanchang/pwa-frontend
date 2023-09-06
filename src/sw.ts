@@ -30,7 +30,7 @@ function urlB64ToUint8Array(base64String: string) {
 
 // saveSubscription saves the subscription to the backend
 async function saveSubscription(subscription: PushSubscription) {
-  const SERVER_URL = 'https://localhost:8443/save-subscription'
+  const SERVER_URL = 'https://gregarious-dragon-2ecad7.netlify.app/api/save-subscription'
 
   const { data } = await axios.post(SERVER_URL, { subscription })
 
