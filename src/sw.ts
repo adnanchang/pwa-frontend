@@ -64,14 +64,9 @@ self.addEventListener('activate', async () => {
 
     const response = await saveSubscription(subscription)
 
-    localStorage.setItem('sub', JSON.stringify(subscription))
-
-    localStorage.setItem('res', JSON.stringify(response))
-
     console.log(`RESPONsE`, response)
   } catch (err) {
     console.log('Error', err)
-    localStorage.setItem('error', (err as any).toString())
   }
 })
 
