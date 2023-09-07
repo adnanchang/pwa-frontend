@@ -28,14 +28,6 @@ onMounted(async () => {
     str.value = res.data
 
     permission.value = window.Notification.permission
-
-    // A service worker must be registered in order to send notifications on iOS
-    regitration.value = await navigator.serviceWorker.register(
-      "sw.ts",
-      {
-        scope: "../",
-      }
-    );
   } catch (error) {
     console.error(error)
   }
