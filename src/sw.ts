@@ -83,6 +83,7 @@ function showLocalNotification(
 }
 
 self.addEventListener('push', function (event) {
+  console.log('something got pushed!')
   if (event.data) {
     console.log('Push event!! ', event.data.text())
 
