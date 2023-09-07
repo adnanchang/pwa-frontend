@@ -24,12 +24,31 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { RouterView } from 'vue-router'
 
 const leftDrawerOpen = ref(false)
 
 function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value
+}
+
+onMounted(async () => {
+  const permission = await requestNotificationPermission();
+
+  console.log('FROM REQUEST PERM', permission)
+})
+
+async function requestNotificationPermission() {
+  const permission = await window.Notification.requestPermission()
+  // value of permission can be 'granted', 'default', 'denied'
+  // granted: user has accepted the request
+  // default: user has dismissed the notification permission popup by clicking on x
+  // denied: user has denied the request.
+  if (permission !== 'granted') {
+    throw new Error('Permission not granted for Notification')
+  }
+
+  return permission
 }
 </script>
