@@ -1,7 +1,5 @@
 import { cleanupOutdatedCaches, precacheAndRoute } from 'workbox-precaching'
 import { clientsClaim } from 'workbox-core'
-import axios from 'axios'
-import { useCounterStore } from './stores/counter'
 
 declare let self: ServiceWorkerGlobalScope
 
@@ -61,19 +59,13 @@ self.addEventListener('activate', async () => {
 
     const subscription = await self.registration.pushManager.subscribe(options)
 
-    useCounterStore().setSub(subscription);
-
     console.log(JSON.stringify(subscription))
 
     const response = await saveSubscription(subscription)
 
-    useCounterStore().setRes(response)
-
     console.log(`RESPONsE`, response)
   } catch (err) {
     console.log('Error', err)
-
-    useCounterStore().setError(err)
   }
 })
 
