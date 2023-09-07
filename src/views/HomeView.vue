@@ -5,11 +5,10 @@
 
       <h3>AFTER ASKING HELLO {{ str }}</h3>
 
-      <q-btn @click="requestNotificationPermission()">
-        allow
-      </q-btn>
+      <q-btn @click="requestNotificationPermission()"> allow </q-btn>
 
       <h4>permission {{ permission }}</h4>
+
     </div>
   </div>
 </template>
@@ -42,5 +41,7 @@ async function requestNotificationPermission() {
   if (permission.value !== 'granted') {
     throw new Error('Permission not granted for Notification')
   }
+
+  ;(await navigator.serviceWorker.ready).showNotification('test', { body: 'test' })
 }
 </script>
