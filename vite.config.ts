@@ -18,7 +18,6 @@ export default defineConfig({
         enabled: true,
         type: 'module',
       },
-      mode: 'development',
       base: '/',
       includeAssets: ['favicon.svg'],
       srcDir: 'src',
