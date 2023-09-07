@@ -15,6 +15,7 @@
 
     <q-drawer v-model="leftDrawerOpen" side="left" overlay behavior="desktop" bordered>
       <!-- drawer content -->
+      {{ permission }}
     </q-drawer>
 
     <q-page-container>
@@ -33,22 +34,22 @@ function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value
 }
 
-onMounted(async () => {
-  const permission = await requestNotificationPermission();
+const permission = ref('')
 
-  console.log('FROM REQUEST PERM', permission)
+onMounted(async () => {
+  await requestNotificationPermission();
+
+  console.log('FROM REQUEST PERM', permission.value)
 })
 
 async function requestNotificationPermission() {
-  const permission = await window.Notification.requestPermission()
+  permission.value = await window.Notification.requestPermission()
   // value of permission can be 'granted', 'default', 'denied'
   // granted: user has accepted the request
   // default: user has dismissed the notification permission popup by clicking on x
   // denied: user has denied the request.
-  if (permission !== 'granted') {
+  if (permission.value !== 'granted') {
     throw new Error('Permission not granted for Notification')
   }
-
-  return permission
 }
 </script>
