@@ -8,9 +8,9 @@
       <q-btn @click="requestNotificationPermission()"> allow </q-btn>
 
       <h4>permission {{ permission }}</h4>
-      <h6>err {{ error ? JSON.parse(error) : '' }}</h6>
-      <h6>sub {{ sub ? JSON.parse(sub) : '' }}</h6>
-      <h6>res {{ res ? JSON.parse(res) : '' }}</h6>
+      <h6>err {{ error ? error : '' }}</h6>
+      <h6>sub {{ sub ? sub : '' }}</h6>
+      <h6>res {{ res ? res : '' }}</h6>
     </div>
   </div>
 </template>
@@ -18,13 +18,13 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import axios from 'axios'
+import { storeToRefs } from 'pinia'
+import { useCounterStore } from '../stores/counter'
+
 const str = ref('')
 const permission = ref('')
-const regitration = ref<ServiceWorkerRegistration | ''>('')
 
-const error = ref('')
-const sub = ref('')
-const res = ref('')
+const { error, res, sub } = storeToRefs(useCounterStore())
 
 onMounted(async () => {
   try {
@@ -35,12 +35,6 @@ onMounted(async () => {
     str.value = resp.data
 
     permission.value = window.Notification.permission
-
-    setTimeout(() => {
-      error.value = localStorage.getItem('error') || ''
-      sub.value = localStorage.getItem('sub') || ''
-      res.value = localStorage.getItem('res') || ''
-    }, 5000)
   } catch (error) {
     console.error(error)
   }
