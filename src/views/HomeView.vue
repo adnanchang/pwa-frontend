@@ -26,6 +26,8 @@ onMounted(async () => {
     console.log('from comp', res.data)
 
     str.value = res.data
+
+    permission.value = window.Notification.permission
   } catch (error) {
     console.error(error)
   }
