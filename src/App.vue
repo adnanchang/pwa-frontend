@@ -19,6 +19,7 @@
     </q-drawer>
 
     <q-page-container>
+      <h3>PERMISSION {{ permission }}</h3>
       <RouterView />
     </q-page-container>
   </q-layout>
