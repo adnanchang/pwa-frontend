@@ -32,9 +32,18 @@ function urlB64ToUint8Array(base64String: string) {
 async function saveSubscription(subscription: PushSubscription) {
   const SERVER_URL = 'https://imaginative-moonbeam-04f17a.netlify.app/api/save-subscription'
 
-  const { data } = await axios.post(SERVER_URL, { subscription })
+  // const { data } = await axios.post(SERVER_URL, { subscription })
 
-  return data
+  // return data
+
+  const response = await fetch(SERVER_URL, {
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(subscription)
+  })
+  return response.json()
 }
 
 self.addEventListener('activate', async () => {

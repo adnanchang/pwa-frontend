@@ -61,6 +61,8 @@ onMounted(async () => {
     const res = await axios.get('https://imaginative-moonbeam-04f17a.netlify.app/api/hello')
 
     console.log('from comp', res.data)
+
+    str.value = res.data
   } catch (error) {
     console.error(error)
   }
