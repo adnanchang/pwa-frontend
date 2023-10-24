@@ -37,19 +37,19 @@ function toggleLeftDrawer() {
 const permission = ref('')
 
 onMounted(async () => {
-  await requestNotificationPermission();
+  // await requestNotificationPermission();
 
   console.log('FROM REQUEST PERM', permission.value)
 })
 
-async function requestNotificationPermission() {
-  permission.value = await window.Notification.requestPermission()
-  // value of permission can be 'granted', 'default', 'denied'
-  // granted: user has accepted the request
-  // default: user has dismissed the notification permission popup by clicking on x
-  // denied: user has denied the request.
-  if (permission.value !== 'granted') {
-    throw new Error('Permission not granted for Notification')
-  }
-}
+// async function requestNotificationPermission() {
+//   permission.value = await window.Notification.requestPermission()
+//   // value of permission can be 'granted', 'default', 'denied'
+//   // granted: user has accepted the request
+//   // default: user has dismissed the notification permission popup by clicking on x
+//   // denied: user has denied the request.
+//   if (permission.value !== 'granted') {
+//     throw new Error('Permission not granted for Notification')
+//   }
+// }
 </script>
