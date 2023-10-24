@@ -5,6 +5,8 @@
 
       <h3>AFTER ASKING HELLO {{ str }}</h3>
 
+      <q-file outlined v-model="model" label="Outlined" />
+
       <q-btn @click="requestNotificationPermission()"> allow </q-btn>
 
       <h4>permission {{ permission }}</h4>
@@ -23,6 +25,7 @@ import { useCounterStore } from '../stores/counter'
 
 const str = ref('')
 const permission = ref('')
+const model= ref(null)
 
 const { error, res, sub } = storeToRefs(useCounterStore())
 
